@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  flask-app:
+    build: ./flask-app
+    ports:
+      - "8000:8000"
+      - "8181:8000"
+      - "8888:8000"
+    restart: always
+
+  asterisk:
+    image: andrius/asterisk
+    ports:
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+    volumes:
+      - ./asterisk/extensions.conf:/etc/asterisk/extensions.conf
+    restart: always
