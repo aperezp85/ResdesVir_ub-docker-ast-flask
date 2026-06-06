@@ -18,7 +18,10 @@
             padding: 30px;
             display: inline-block;
             border-radius: 10px;
+            margin: 10px;
         }
+        .status-ok { color: #00ff88; }
+        .status-err { color: #ff4444; }
     </style>
 </head>
 <body>
@@ -26,6 +29,12 @@
         <h1>Proyecto Virtualizacion de Redes</h1>
         <p>Bienvenido al sistema de automatizacion</p>
         <p>Tu IP de conexion es: <strong>{{ ip }}</strong></p>
+        <hr>
+        <p>Estado de Asterisk AMI:
+            <strong class="{% if 'activo' in asterisk_status %}status-ok{% else %}status-err{% endif %}">
+                {{ asterisk_status }}
+            </strong>
+        </p>
         <p>Integracion: Docker + Flask + Asterisk</p>
     </div>
 </body>

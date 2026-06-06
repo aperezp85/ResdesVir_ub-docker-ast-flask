@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   flask-app:
     build: ./flask-app
@@ -7,6 +5,13 @@ services:
       - "8000:8000"
       - "8181:8000"
       - "8888:8000"
+    depends_on:
+      - asterisk
+    environment:
+      - ASTERISK_HOST=asterisk
+      - ASTERISK_PORT=5038
+      - ASTERISK_USER=flask
+      - ASTERISK_PASS=flask123
     restart: always
 
   asterisk:
@@ -14,6 +19,8 @@ services:
     ports:
       - "5060:5060/udp"
       - "5060:5060/tcp"
+      - "5038:5038"
     volumes:
       - ./asterisk/extensions.conf:/etc/asterisk/extensions.conf
+      - ./asterisk/manager.conf:/etc/asterisk/manager.conf
     restart: always
