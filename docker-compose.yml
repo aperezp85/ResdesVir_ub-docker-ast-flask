@@ -23,4 +23,6 @@ services:
     volumes:
       - ./asterisk/extensions.conf:/etc/asterisk/extensions.conf
       - ./asterisk/manager.conf:/etc/asterisk/manager.conf
+      - ./asterisk/sip.conf:/etc/asterisk/sip.conf
+      - ./asterisk/pjsip.conf:/etc/asterisk/pjsip.conf
     restart: always
